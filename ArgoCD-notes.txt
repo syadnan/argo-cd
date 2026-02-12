@@ -1,0 +1,71 @@
+Lab1:
+
+sudo su
+kubectl get po -n argocd
+#make sure all pods are running
+kubectl delete pod <name of the pod> -n argocd
+kubectl port-forward svc/argocd-server -n argocd 8080:443   --address 0.0.0.0 > argocd-portforward.log 2>&1 &
+cat argocd-portforward.log
+hostname -i
+#replace ip
+#open in linux machine browser : http: //<ip>:8080
+
+Lab2 (Create project from  UI)
+
+https://github.com/amitopenwriteup/argocd-docs-labs/blob/main/Lab2%20Project%20creation%20UI.docx
+
+#Personal github account (signup for personal github/ if already account is there no need toc rate)
+https://github.com/
+
+
+Lab3: setup cli
+
+https://github.com/amitopenwriteup/argocd-docs-labs/blob/main/Lab3%20cli.docx
+
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+argocd login <ipaddr>:8080
+
+Lab4:
+    Connect repo
+    https://github.com/amitopenwriteup/argocd-docs-labs/blob/main/Lab4%20Gitrepo%20mapping.docx
+
+Lab 5:
+https://github.com/amitopenwriteup/argocd-docs-labs/blob/main/Lab5%20application.docx
+    
+Lab 6 and Lab7
+kubectl apply -f https://raw.githubusercontent.com/amitopenwriteup/argocd-docs-labs/refs/heads/main/dev-project.yaml
+
+https://github.com/amitopenwriteup/argocd-docs-labs/blob/main/Lab6%20argocd%20Project%20Cli.docx
+ 
+https://github.com/amitopenwriteup/argocd-docs-labs/blob/main/Lab7%20argocd%20cli.docx
+
+
+Lab 8 Configure ssh auth (part 3)
+
+https://www.openwriteup.com/?page_id=1081
+
+----------
+
+
+
+
+----------
+
+argocd app create myappcli \
+ --repo https://github.com/syadnan/argoappsetlist.git\
+ --path list-generator-example \
+ --dest-server https://kubernetes.default.svc \
+ --project dev-project \
+ --revision main \
+ --sync-policy automated \
+ --auto-prune --self-heal
+
+
+https://etherpad.opendev.org/p/argocd
+
+https://172.31.25.76:8080/applications
+admin/EI8oYKiVdAct-gIo/admin123
+
+-------------
